@@ -6,25 +6,25 @@
 #endif
 
 //Data for shield
-GLfloat shield[5][3] = { {5, 0, 0}, {8, 20, 0}, {0, 25, 0}, {-8, 20, 0}, {-5, 0, 0}};
+GLfloat shield[5][3] = { {4, 0, 0}, {4, 20, 0}, {-4, 20, 0}, {-4, 0, 0}};
 
 //Color for rings
-GLfloat colors[4][3] = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}, {1, 1, 0}};
+GLfloat colors[4][3] = {{0, 0, 1}, {0, 0, 1}, {0, 0, 1}, {0, 0, 1}};
 
 //draw shield using the current modelview matrix
 void draw_shield(void){
     
     glBegin(GL_POLYGON);
-        for (int i = 0; i<5; i++)
+        for (int i = 0; i<4; i++)
             glVertex3fv(shield[i]);
     glEnd();
 }
 
 void draw_ring(void){
-    for (int r = 0; r<360; r = r+15){
+    for (int r = 0; r<360; r = r+45){
         glPushMatrix();
         glRotated(r, 0, 0, 1);
-        glTranslated(0, 50, 0);
+        glTranslated(0, 30, 0);
         draw_shield();
         glPopMatrix();
     }
@@ -35,8 +35,16 @@ void display(void){
     for (int i = 0; i < 4; i++){
         glColor3fv(colors[i]);
         glPushMatrix();
-        glTranslated((i-3)*50, (i-3)*50, -i*5);
-        glScaled(i+1, i+1, i+1);
+        glTranslated((i-1)*210-i*70, 200, -i*5);
+        //glScaled(i+1, i+1, i+1);
+        draw_ring();
+        glPopMatrix();
+    }
+    for (int i = 0; i < 4; i++){
+        glColor3fv(colors[i]);
+        glPushMatrix();
+        glTranslated((i-1)*210-i*70, 0, -i*5);
+        //glScaled(i+1, i+1, i+1);
         draw_ring();
         glPopMatrix();
     }
@@ -47,11 +55,11 @@ int main(int argc, char ** argv){
     
     glutInit(& argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(600, 600);
+    glutInitWindowSize(800, 500);
     glutInitWindowPosition(200, 100);
     glutCreateWindow("CTM stack");
     
-    glClearColor(0.0,0.0,0.0,0.0);
+    glClearColor(0.8,1.0,0.0,0.0);
     glEnable(GL_DEPTH_TEST);
     
     
