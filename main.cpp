@@ -6,7 +6,7 @@
 #endif
 
 //Data for shield
-GLfloat shield[5][3] = { {4, 0, 0}, {4, 24, 0}, {-4, 24, 0}, {-4, 0, 0}};
+GLfloat shield[5][3] = { {5, 0, 0}, {5, 24, 0}, {-5, 24, 0}, {-5, 0, 0}};
 
 //Color for rings
 GLfloat colors[1][3] = {{0, 0, 1}};
@@ -18,10 +18,10 @@ GLfloat white_colors[1][3] = {{0, 0, 0}};
 GLfloat black_colors[1][3] = {{1, 1, 1}};
 
 //right border
-GLfloat right_border[8][3] ={{0, 0, 0}, {4, 0, 0}, {4, 24, 0}, {0, 24, 0}, {0, 26, 0}, {6, 26, 0}, {6, -2, 0}, {0, -2, 0}};
+GLfloat right_border[8][3] ={{0, 0, 0}, {5, 0, 0}, {5, 24, 0}, {0, 24, 0}, {0, 26, 0}, {7, 26, 0}, {7, -2, 0}, {0, -2, 0}};
 
 //left border
-GLfloat left_border[8][3] ={{0, 0, 0}, {-4, 0, 0}, {-4, 24, 0}, {0, 24, 0}, {0, 26, 0}, {-6, 26, 0}, {-6, -2, 0}, {0, -2, 0}};
+GLfloat left_border[8][3] ={{0, 0, 0}, {-5, 0, 0}, {-5, 24, 0}, {0, 24, 0}, {0, 26, 0}, {-7, 26, 0}, {-7, -2, 0}, {0, -2, 0}};
 
 //draw shield using the current modelview matrix
 void draw_shield(void){
@@ -91,7 +91,6 @@ void display(void){
         glPushMatrix();
         
         //centre of each ring is 140 unit apart
-        //each rings are 140-(30+28)*2=24 unit apart
         glTranslated((i-1)*210-i*70, 200, 0);
         draw_ring(alternate_Border);
         glPopMatrix();
@@ -119,8 +118,8 @@ int main(int argc, char ** argv){
     
     glutInit(& argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(1200, 600);
-    glutInitWindowPosition(100, 50);
+    glutInitWindowSize(800, 400);
+    glutInitWindowPosition(200, 200);
     glutCreateWindow("Md_Mahedi_Rana");
     
     glClearColor(0.8,1.0,0.0,0.0);
