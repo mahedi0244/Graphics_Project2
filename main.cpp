@@ -115,7 +115,7 @@ int main(int argc, char ** argv){
     glutInit(& argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(1200, 600);
-    glutInitWindowPosition(200, 100);
+    glutInitWindowPosition(100, 100);
     glutCreateWindow("Md_Mahedi_Rana");
     
     glClearColor(0.8,1.0,0.0,0.0);
