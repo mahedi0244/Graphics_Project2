@@ -12,10 +12,10 @@ GLfloat shield[5][3] = { {6, 0, 0}, {6, 20, 0}, {-6, 20, 0}, {-6, 0, 0}};
 GLfloat colors[1][3] = {{0, 0, 1}};
 
 //Color for right border
-GLfloat right_colors[1][3] = {{0, 0, 0}};
+GLfloat white_colors[1][3] = {{0, 0, 0}};
 
 //Color for left border
-GLfloat left_colors[1][3] = {{1, 1, 1}};
+GLfloat black_colors[1][3] = {{1, 1, 1}};
 
 //right border
 GLfloat right_border[8][3] ={{0, 0, 0}, {6, 0, 0}, {6, 20, 0}, {0, 20, 0}, {0, 22, 0}, {8, 22, 0}, {8, -2, 0}, {0, -2, 0}};
@@ -47,37 +47,65 @@ void draw_left_border(void){
     glEnd();
 }
 
-void draw_ring(void){
+void draw_ring(bool alternare_Border){
     for (int r = 0; r<360; r = r+45){
         glPushMatrix();
         glRotated(r, 0, 0, 1);
         glTranslated(0, 40, 0);
         glColor3fv(colors[0]);
         draw_shield();
-        glColor3fv(right_colors[0]);
-        draw_right_border();
         
-        glColor3fv(left_colors[0]);
-        draw_left_border();
+        if (alternare_Border ==  false){
+            
+            glColor3fv(white_colors[0]);
+            draw_right_border();
+        
+            glColor3fv(black_colors[0]);
+            draw_left_border();
+        }
+        
+        else{
+            
+            glColor3fv(black_colors[0]);
+            draw_right_border();
+            
+            glColor3fv(white_colors[0]);
+            draw_left_border();
+        
+        }
         glPopMatrix();
     }
 }
 
 void display(void){
+    
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    bool alternate_Border;
+    
     for (int i = 0; i < 4; i++){
+        if (i%2 == 0)
+            alternate_Border = false;
+        else
+            alternate_Border = true;
         glPushMatrix();
         glTranslated((i-1)*210-i*70, 200, -i*5);
-        draw_ring();
+        draw_ring(alternate_Border);
         glPopMatrix();
+        
     }
+    
     for (int i = 0; i < 4; i++){
-        glColor3fv(colors[i]);
+        if (i%2 != 0)
+            alternate_Border = false;
+        else
+            alternate_Border = true;
         glPushMatrix();
         glTranslated((i-1)*210-i*70, 0, -i*5);
-        draw_ring();
+        draw_ring(alternate_Border);
         glPopMatrix();
+        
     }
+    
     glFlush();
 }
 
