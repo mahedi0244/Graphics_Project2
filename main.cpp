@@ -73,6 +73,7 @@ void draw_ring(bool alternare_Border){
             draw_left_border();
         
         }
+        
         glPopMatrix();
     }
 }
@@ -100,7 +101,7 @@ void display(void){
         else
             alternate_Border = true;
         glPushMatrix();
-        glTranslated((i-1)*210-i*70, 0, -i*5);
+        glTranslated((i-1)*210-i*70, 46, -i*5);
         draw_ring(alternate_Border);
         glPopMatrix();
         
@@ -113,14 +114,12 @@ int main(int argc, char ** argv){
     
     glutInit(& argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(800, 700);
+    glutInitWindowSize(800, 800);
     glutInitWindowPosition(200, 100);
     glutCreateWindow("CTM stack");
     
     glClearColor(0.8,1.0,0.0,0.0);
     glEnable(GL_DEPTH_TEST);
-    
-    
     
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -128,7 +127,6 @@ int main(int argc, char ** argv){
     
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    
     
     glutDisplayFunc(display);
     
