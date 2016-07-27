@@ -6,7 +6,7 @@
 #endif
 
 //Data for shield
-GLfloat shield[5][3] = { {4, 0, 0}, {4, 20, 0}, {-4, 20, 0}, {-4, 0, 0}};
+GLfloat shield[5][3] = { {6, 0, 0}, {6, 20, 0}, {-6, 20, 0}, {-6, 0, 0}};
 
 //Color for rings
 GLfloat colors[1][3] = {{0, 0, 1}};
@@ -18,9 +18,10 @@ GLfloat right_colors[1][3] = {{0, 0, 0}};
 GLfloat left_colors[1][3] = {{1, 1, 1}};
 
 //right border
-GLfloat right_border[8][3] ={{0, 0, 0}, {4, 0, 0}, {4, 20, 0}, {0, 20, 0}, {0, 22, 0}, {6, 22, 0}, {6, -2, 0}, {0, -2, 0}};
+GLfloat right_border[8][3] ={{0, 0, 0}, {6, 0, 0}, {6, 20, 0}, {0, 20, 0}, {0, 22, 0}, {8, 22, 0}, {8, -2, 0}, {0, -2, 0}};
 
-
+//left border
+GLfloat left_border[8][3] ={{0, 0, 0}, {-6, 0, 0}, {-6, 20, 0}, {0, 20, 0}, {0, 22, 0}, {-8, 22, 0}, {-8, -2, 0}, {0, -2, 0}};
 
 //draw shield using the current modelview matrix
 void draw_shield(void){
@@ -38,15 +39,26 @@ void draw_right_border(void){
     glEnd();
 }
 
+//draw right border
+void draw_left_border(void){
+    glBegin(GL_POLYGON);
+    for (int i = 0; i<8; i++)
+        glVertex3fv(left_border[i]);
+    glEnd();
+}
+
 void draw_ring(void){
     for (int r = 0; r<360; r = r+45){
         glPushMatrix();
         glRotated(r, 0, 0, 1);
-        glTranslated(0, 30, 0);
+        glTranslated(0, 40, 0);
         glColor3fv(colors[0]);
         draw_shield();
         glColor3fv(right_colors[0]);
         draw_right_border();
+        
+        glColor3fv(left_colors[0]);
+        draw_left_border();
         glPopMatrix();
     }
 }
@@ -56,7 +68,6 @@ void display(void){
     for (int i = 0; i < 4; i++){
         glPushMatrix();
         glTranslated((i-1)*210-i*70, 200, -i*5);
-        //glScaled(i+1, i+1, i+1);
         draw_ring();
         glPopMatrix();
     }
@@ -64,7 +75,6 @@ void display(void){
         glColor3fv(colors[i]);
         glPushMatrix();
         glTranslated((i-1)*210-i*70, 0, -i*5);
-        //glScaled(i+1, i+1, i+1);
         draw_ring();
         glPopMatrix();
     }
@@ -75,7 +85,7 @@ int main(int argc, char ** argv){
     
     glutInit(& argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(800, 500);
+    glutInitWindowSize(800, 700);
     glutInitWindowPosition(200, 100);
     glutCreateWindow("CTM stack");
     
