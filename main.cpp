@@ -90,7 +90,7 @@ void display(void){
             alternate_Border = true;
         glPushMatrix();
         
-        //centre of each ring is 140 unit apart
+        //centre of each ring is 140 unit apart in x direction
         glTranslated((i-1)*210-i*70, 200, 0);
         draw_ring(alternate_Border);
         glPopMatrix();
@@ -104,7 +104,7 @@ void display(void){
             alternate_Border = true;
         glPushMatrix();
         
-        //y=200-140=60, so the center of each ring is still 140 unit apart
+        //y=200-140=60, so the center of each ring is still 140 unit apart in y direction
         glTranslated((i-1)*210-i*70, 60, 0);
         draw_ring(alternate_Border);
         glPopMatrix();
