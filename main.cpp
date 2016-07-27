@@ -89,6 +89,9 @@ void display(void){
         else
             alternate_Border = true;
         glPushMatrix();
+        
+        //centre of each ring is 140 unit apart
+        //each rings are 140-(30+28)*2=24 unit apart
         glTranslated((i-1)*210-i*70, 200, 0);
         draw_ring(alternate_Border);
         glPopMatrix();
@@ -101,7 +104,9 @@ void display(void){
         else
             alternate_Border = true;
         glPushMatrix();
-        glTranslated((i-1)*210-i*70, 52, 0);
+        
+        //y=200-140=60, so the center of each ring is still 140 unit apart
+        glTranslated((i-1)*210-i*70, 60, 0);
         draw_ring(alternate_Border);
         glPopMatrix();
         
@@ -123,7 +128,7 @@ int main(int argc, char ** argv){
     
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-300, 300, -50, 300, 0, 100);
+    glOrtho(-278, 278, -18, 278, 0, 100);
     
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
