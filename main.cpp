@@ -6,7 +6,7 @@
 #endif
 
 //Data for shield
-GLfloat shield[5][3] = { {6, 0, 0}, {6, 20, 0}, {-6, 20, 0}, {-6, 0, 0}};
+GLfloat shield[5][3] = { {4, 0, 0}, {4, 24, 0}, {-4, 24, 0}, {-4, 0, 0}};
 
 //Color for rings
 GLfloat colors[1][3] = {{0, 0, 1}};
@@ -18,10 +18,10 @@ GLfloat white_colors[1][3] = {{0, 0, 0}};
 GLfloat black_colors[1][3] = {{1, 1, 1}};
 
 //right border
-GLfloat right_border[8][3] ={{0, 0, 0}, {6, 0, 0}, {6, 20, 0}, {0, 20, 0}, {0, 22, 0}, {8, 22, 0}, {8, -2, 0}, {0, -2, 0}};
+GLfloat right_border[8][3] ={{0, 0, 0}, {4, 0, 0}, {4, 24, 0}, {0, 24, 0}, {0, 26, 0}, {6, 26, 0}, {6, -2, 0}, {0, -2, 0}};
 
 //left border
-GLfloat left_border[8][3] ={{0, 0, 0}, {-6, 0, 0}, {-6, 20, 0}, {0, 20, 0}, {0, 22, 0}, {-8, 22, 0}, {-8, -2, 0}, {0, -2, 0}};
+GLfloat left_border[8][3] ={{0, 0, 0}, {-4, 0, 0}, {-4, 24, 0}, {0, 24, 0}, {0, 26, 0}, {-6, 26, 0}, {-6, -2, 0}, {0, -2, 0}};
 
 //draw shield using the current modelview matrix
 void draw_shield(void){
@@ -51,7 +51,7 @@ void draw_ring(bool alternare_Border){
     for (int r = 0; r<360; r = r+45){
         glPushMatrix();
         glRotated(r, 0, 0, 1);
-        glTranslated(0, 40, 0);
+        glTranslated(0, 30, 0);
         glColor3fv(colors[0]);
         draw_shield();
         
@@ -101,7 +101,7 @@ void display(void){
         else
             alternate_Border = true;
         glPushMatrix();
-        glTranslated((i-1)*210-i*70, 46, -i*5);
+        glTranslated((i-1)*210-i*70, 42, -i*5);
         draw_ring(alternate_Border);
         glPopMatrix();
         
@@ -114,7 +114,7 @@ int main(int argc, char ** argv){
     
     glutInit(& argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(800, 800);
+    glutInitWindowSize(1200, 600);
     glutInitWindowPosition(200, 100);
     glutCreateWindow("Md_Mahedi_Rana");
     
@@ -123,7 +123,7 @@ int main(int argc, char ** argv){
     
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-300, 300, -300, 300, 0, 100);
+    glOrtho(-300, 300, -100, 300, 0, 100);
     
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
