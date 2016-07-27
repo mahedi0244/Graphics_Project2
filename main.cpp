@@ -119,7 +119,7 @@ int main(int argc, char ** argv){
     
     glutInit(& argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(1200, 600);
+    glutInitWindowSize(1100, 600);
     glutInitWindowPosition(100, 50);
     glutCreateWindow("Md_Mahedi_Rana");
     
@@ -128,7 +128,7 @@ int main(int argc, char ** argv){
     
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-278, 278, -18, 278, 0, 100);
+    glOrtho(-288, 288, -18, 278, 0, 100);
     
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
