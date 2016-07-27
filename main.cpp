@@ -123,7 +123,7 @@ int main(int argc, char ** argv){
     
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-300, 300, -100, 300, 0, 100);
+    glOrtho(-300, 300, -50, 300, 0, 100);
     
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
