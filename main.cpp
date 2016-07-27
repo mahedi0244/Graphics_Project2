@@ -89,7 +89,7 @@ void display(void){
         else
             alternate_Border = true;
         glPushMatrix();
-        glTranslated((i-1)*210-i*70, 200, -i*5);
+        glTranslated((i-1)*210-i*70, 200, 0);
         draw_ring(alternate_Border);
         glPopMatrix();
         
@@ -101,7 +101,7 @@ void display(void){
         else
             alternate_Border = true;
         glPushMatrix();
-        glTranslated((i-1)*210-i*70, 42, -i*5);
+        glTranslated((i-1)*210-i*70, 52, 0);
         draw_ring(alternate_Border);
         glPopMatrix();
         
